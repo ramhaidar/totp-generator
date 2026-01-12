@@ -1,7 +1,10 @@
-import * as fs from "fs";
-import * as fse from "fs-extra";
+import fs from "fs";
+import fse from "fs-extra";
 import * as path from "path";
 import { DemopageEmpty } from "webpage-templates";
+
+// Get __dirname equivalent for ES modules
+const projectRoot = path.resolve(process.cwd());
 
 const data = {
     title: "Online TOTP generator",
@@ -12,7 +15,7 @@ const data = {
     ],
     githubProjectName: "totp-generator",
     readme: {
-        filepath: path.join(__dirname, "..", "README.md"),
+        filepath: path.join(projectRoot, "README.md"),
         branchName: "main"
     },
     additionalLinks: [],
@@ -82,14 +85,14 @@ const data = {
 </div>`,
 };
 
-const DEST_DIR = path.resolve(__dirname, "..", "docs");
+const DEST_DIR = path.resolve(projectRoot, "docs");
 
 const buildResult = DemopageEmpty.build(data, DEST_DIR);
 
 // disable linting on this file because it is generated
 buildResult.pageScriptDeclaration = "/* tslint:disable */\n" + buildResult.pageScriptDeclaration;
 
-const SCRIPT_DECLARATION_FILEPATH = path.resolve(__dirname, ".", "ts", "page-interface-generated.ts");
+const SCRIPT_DECLARATION_FILEPATH = path.resolve(projectRoot, "src", "ts", "page-interface-generated.ts");
 fs.writeFileSync(SCRIPT_DECLARATION_FILEPATH, buildResult.pageScriptDeclaration);
 
-fse.copySync(path.resolve(__dirname, "static"), path.resolve(__dirname, "..", "docs"));
+fse.copySync(path.resolve(projectRoot, "src", "static"), path.resolve(projectRoot, "docs"));
