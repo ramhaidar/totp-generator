@@ -8,13 +8,14 @@
   "scripts": {
     "pre-commit": "npm run rebuild && npm run lint",
     "http-server": "http-server ./docs -p 8080 -c-1",
-    "build": "npm run build-page && npm run webpack && npm run fix-references",
+    "build": "npm run build-page && npm run webpack && npm run fix-references && npm run remove-footer-links",
     "build-page": "ts-node-script src/generate-page.ts",
     "clean": "shx rm -rf docs/* **/*generated.*",
     "lint": "eslint src/ts -c src/config/.eslintrc.json --ext .ts",
     "lint-fix": "eslint src/ts -c src/config/.eslintrc.json --ext .ts --fix",
     "rebuild": "npm run clean && npm run build",
     "fix-references": "node scripts/fix-references.js",
+    "remove-footer-links": "node scripts/remove-footer-links.js",
     "webpack": "webpack --config src/config/webpack.config.js",
     "webpack-watch": "webpack --config src/config/webpack.config.js --watch"
   },
