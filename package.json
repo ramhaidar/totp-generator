@@ -20,18 +20,18 @@
     "webpack-watch": "webpack --config src/config/webpack.config.js --watch"
   },
   "engines": {
-    "node": ">=18.16.0"
+    "node": ">=20.19.0"
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^18.19.130",
     "@types/totp-generator": "^0.0.5",
-    "@typescript-eslint/eslint-plugin": "^5.62.0",
-    "@typescript-eslint/parser": "^5.62.0",
-    "eslint": "^9.26.0",
+    "@typescript-eslint/eslint-plugin": "^8.54.0",
+    "@typescript-eslint/parser": "^8.54.0",
+    "eslint": "^9.39.2",
     "fs-extra": "^11.3.3",
     "http-server": "^14.1.1",
-    "shx": "^0.3.4",
+    "shx": "^0.4.0",
     "totp-generator": "^0.0.14",
     "ts-loader": "^9.5.4",
     "ts-node": "^10.9.2",
@@ -39,5 +39,11 @@
     "webpack": "^5.104.1",
     "webpack-cli": "^5.1.4",
     "webpage-templates": "github:piellardj/webpage-templates"
+  },
+  "pnpm": {
+    "overrides": {
+      "html-encoding-sniffer": "^6.0.0",
+      "shx": "^0.4.0"
+    }
   }
 }
